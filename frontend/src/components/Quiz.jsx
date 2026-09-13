@@ -33,7 +33,7 @@ function Quiz() {
   }, [submitted])
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/documents')
+    axios.get(`${import.meta.env.VITE_API_URL}/documents`)
       .then((res) => setDocuments(res.data.documents))
       .catch(() => {})
   }, [])
@@ -46,7 +46,7 @@ function Quiz() {
     setSelectedAnswers({})
 
     try {
-      let url = 'http://127.0.0.1:8000/generate-quiz'
+      let url =  `${import.meta.env.VITE_API_URL}/generate-quiz`
       if (selectedDoc) {
         url += `?document=${encodeURIComponent(selectedDoc)}`
       }

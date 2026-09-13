@@ -15,7 +15,7 @@ function Library() {
     setLoading(true)
     setError(null)
     try {
-      const response = await axios.get('http://127.0.0.1:8000/documents')
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/documents`)
       setDocuments(response.data.documents)
     } catch (err) {
       setError('Could not load documents. Make sure the backend is running.')
@@ -27,7 +27,7 @@ function Library() {
   const handleDelete = async (filename) => {
     setDeletingFile(filename)
     try {
-      await axios.delete(`http://127.0.0.1:8000/documents/${encodeURIComponent(filename)}`)
+      await axios.delete(`${import.meta.env.VITE_API_URL}/documents/${encodeURIComponent(filename)}`)
       setDocuments((prev) => prev.filter((doc) => doc.filename !== filename))
     } catch (err) {
       setError('Failed to delete document.')

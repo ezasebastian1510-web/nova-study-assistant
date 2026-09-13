@@ -28,7 +28,7 @@ function Chat() {
   }, [messages])
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/documents')
+    axios.get(`${import.meta.env.VITE_API_URL}/documents`)
       .then((res) => setDocuments(res.data.documents))
       .catch(() => {})
   }, [])
@@ -43,7 +43,7 @@ function Chat() {
     setLoading(true)
 
     try {
-      let url = `http://127.0.0.1:8000/ask?question=${encodeURIComponent(question)}`
+      let url = `${import.meta.env.VITE_API_URL}/ask?question=${encodeURIComponent(question)}`
       if (selectedDoc) {
         url += `&document=${encodeURIComponent(selectedDoc)}`
       }
